@@ -67,10 +67,35 @@ public class Polynomial {
 		
 		//from highest degree to smallest degree
 		
-		return null;
+			
+		Node Ordered = new Node(0,0,null);
+			
+		//int low = Integer.MAX_VALUE;
+		//int high = Integer.MIN_VALUE;
+		// Node temp = new Node(0, 0, null);
+		// temp.next = new Node(tempCo, tempDegree,null);
+		int high = -1;
+		boolean run == true;
+		Do{
+		for(node current = poly; current!= null; current = poly.next){ //find highest degree, add it to new list, then find the next one
+			if (current.term.degree > high)
+				high = current.term.degree;
+				
+				
+			//if (current.term.degree < current.next.term.degree)
+			//	current = poly;
+				
+		}
+		for(node current = poly; current!= null; current = poly.next){
+			if(current.term.degree == high)
+				Ordered.next = new Node(current.term.coeff, 			current.term.degree, null);
+			poly = poly.next;
+		}
+		while(run == true)}
+		return Ordered;
 	}
 	
-	private static Node Remove(Term input){
+	private static Node Remove(Node input){
 		
 		//while(){ }//.next =
 			
@@ -83,7 +108,7 @@ public class Polynomial {
 	public static Node add(Node poly1, Node poly2) {
 		/** COMPLETE THIS METHOD **/
 		
-		
+		int length = 0;
 		Node temp = new Node(0, 0, null);
 		
 		for (Node list1 = poly1; list1 != null; list1 = poly1.next) {
@@ -93,6 +118,8 @@ public class Polynomial {
 					
 					float tempCo =	list1.term.coeff + list2.term.coeff;  //check if 0
 					int tempDegree = list1.term.degree;
+					poly1 = poly1.next;
+					poly2 = poly2.next;
 					
 					if (tempCo == 0){
 						//remove, then continue
@@ -101,28 +128,32 @@ public class Polynomial {
 					
 					 //temp.term = new Term(tempCo, tempDegree);
 					 temp.next = new Node(tempCo, tempDegree,null);
-					 return temp;
+					 length +=1;
+				}
+			}
+		}
+			
+		if(poly1 != null)	
+			temp.next = poly1.next;
+		if(poly2 != null)
+			temp.next = poly2.next;
+			
+				
+		if(length ==0)
+			return 0;
+		else if(length == 1)
+			return temp;
+		else
+			return null  // return sort(temp);	
+		
+		//return sorted array. 
+		return null;
 					 
 					
 
 				//remove added terms and add the unequal degree at the end	
 				
-				}
-				
-				
-			//	else{
-					//return full list in order from greatest degree to lowest
-					
-					
-					
-				//}
-					
-					
-				}
-			}
-		
-		return temp; //return sort method of the nodes
-	}
+		}
 	
 
 	/**
