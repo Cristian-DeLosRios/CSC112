@@ -65,7 +65,7 @@ public class Polynomial {
 	
 	private static Node Sort(Node poly){
 		
-		
+		Node temp = poly;
 		Node polyCopy = null;
 		Node Highest = null;
 		int largest;
@@ -83,13 +83,16 @@ public class Polynomial {
 				 }
 				
 			}
-			
+			if(polyCopy == null){
 			polyCopy = new Node(Highest.term.coeff,Highest.term.degree,null);//maybe set these too 0,0, null and then fill with .next
+			}
+			else
+				polyCopy.next = new Node(Highest.term.coeff, Highest.term.degree,null);
 			//poly = poly.next;
 			//polycopy.next = new Node();
 		}
-		Delete(poly,k);//delete highest node
-		Sort(poly); //grab highest degree > add to node list > delete said node > repeat until no more nodes left in poly.
+		Delete(temp,k);//delete highest node
+		Sort(temp); //grab highest degree > add to node list > delete said node > repeat until no more nodes left in poly.
 		
 		return polyCopy;
 	}
@@ -108,37 +111,68 @@ public class Polynomial {
 		/** COMPLETE THIS METHOD **/
 		// FOLLOWING LINE IS A PLACEHOLDER TO MAKE THIS METHOD COMPILE
 		// CHANGE IT AS NEEDED FOR YOUR IMPLEMENTATION
-		Node sortedP1 = Sort(poly1);
-		Node sortedP2 = Sort(poly2);
-		Node Head = null; //Pointer for third node to save sum into
+
+		Node Temp = null; //Pointer for third node to save sum into
+		//Node Temp = null;
 		
 		//Node temp = new Node(0, 0, null);
 		//to add, the degree must be the same.
-		while(sortedP1 != null && sortedP2 != null){ // as long as it is not empty.
+		if(poly1 == null)
+			return poly2;
+		if(poly2 == null)
+			return poly1;
+		while(poly1 != null && poly2 != null){ // as long as it is not empty.
+			
 
-	       	if(sortedP1.term.degree <sortedP2.term.degree)
-	       		sortedP1 = sortedP1.next; //movement of the pointer
-	        else if(sortedP2.term.degree <sortedP1.term.degree)
-	        	sortedP2 = sortedP2.next;
+	       	if(poly1.term.degree <poly2.term.degree){
+	       	Temp = new Node(poly2.term.coeff, poly2.term.degree, Temp);
+	       	Temp = Temp.next;
+       		poly2 = poly2.next; //movement of the pointer
+
+	       	}
+	        else if(poly2.term.degree <poly1.term.degree){
+	       	    Temp = new Node(poly1.term.coeff, poly1.term.degree, Temp);
+	       	    Temp = Temp.next;
+	        	poly2 = poly2.next;
+
+	        }
 	        else {//their degrees are the same
 	        	
-	        	Node Temp = new Node(sortedP1.term.coeff + sortedP2.term.coeff, sortedP1.term.degree, null);
+	        	//while(stop != true){
+	        	Temp = new Node(poly1.term.coeff + poly2.term.coeff, poly1.term.degree, Temp);
 	        	//Head of new node, Set to Null starting value. Initialize new node to begin saving sum into.
-	        	
-	        	if(Head == null){
-	        		Head = Temp; //copy over the node into Head.
+	        	//stop = true;
+	        	poly1 = poly1.next;
+	        	poly2 = poly2.next;
+	        	Temp = Temp.next;
 	        	}
+	       //	if(poly1.term.degree == 0)
+	       		
+	        while(poly2 == null){
+	       		if(poly1 != null){
+	       			Temp = new Node(poly1.term.coeff, poly1.term.degree, Temp);
+	       			Temp = Temp.next;
+	       			poly1 = poly1.next;
+	       				
+	       		}
+	        }
+	       	while(poly2 == null){
+		       	if(poly2 != null){
+		       		Temp = new Node(poly2.term.coeff, poly2.term.degree, Temp);
+		       			Temp = Temp.next;
+		       			poly2 = poly2.next;
+		       	}
+	       	}
+	       	
 	     //before while loop ends move both poly and head pointers to the next value
-	        	Head = Head.next;
-	        	sortedP1 = sortedP1.next;
-	        	sortedP2 = sortedP2.next;
+	 
 	        	
 	        }//End of while loop
-	       	return Head; //returns sorted nodes
+	       	return Temp; //returns sorted nodes
 		}
 			
 			
-		return Head;// if empty will return null node, else will return the sorted and added temp poly
+		// if empty will return null node, else will return the sorted and added temp poly
 			
 			
 		/*
@@ -176,6 +210,19 @@ public class Polynomial {
 	 *         is the front of the result polynomial
 	 */
 	public static Node multiply(Node poly1, Node poly2) {
+		Node Temp = null;
+		
+		if(poly1 == null)
+			return poly2;
+		if(poly2 == null)
+			return poly1;
+		
+		while(poly2 != null){
+		}
+		while(poly2 != null){
+		}
+		
+		
 		/** COMPLETE THIS METHOD **/
 		// FOLLOWING LINE IS A PLACEHOLDER TO MAKE THIS METHOD COMPILE
 		// CHANGE IT AS NEEDED FOR YOUR IMPLEMENTATION
